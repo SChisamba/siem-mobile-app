@@ -14,7 +14,7 @@ workflows:
           pip install flet==$FLET_VERSION mysql-connector-python
       - name: Execute Flet Native Android Build
         script: |
-          # ✅ FIX: Automatically pipes a 'yes' answer to clear the prompt hang
-          yes | flet build apk mobile_monitor.py
+          # ✅ FIX: Explicitly binds your file name as the entry point
+          yes | flet build apk mobile_monitor.py --module-name mobile_monitor
     artifacts:
       - build/apk/*.apk

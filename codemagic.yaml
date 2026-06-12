@@ -14,10 +14,14 @@ workflows:
           pip install flet==$FLET_VERSION mysql-connector-python
       - name: Execute Flet Native Android Build
         script: |
-          # ✅ FIX: Dynamically bundles files into a standard structure
+          # Bundles layout files dynamically
           mkdir -p src
           mv -f mobile_monitor.py src/main.py
           mv -f flet.yaml src/
+          
+          # ✅ FIX: Copies the requirements tracker into the source folder 
+          # so the builder packs the MySQL driver directly into the phone app
+          mv -f requirements.txt src/
           
           # Automatically passes the yes confirmation hook
           yes | flet build apk src

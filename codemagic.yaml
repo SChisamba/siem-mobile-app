@@ -1,0 +1,19 @@
+workflows:
+  flet-android-workflow:
+    name: Flet Android APK Build
+    max_build_duration: 15
+    instance_type: mac_mini_m1
+    environment:
+      groups:
+        - python
+      vars:
+        FLET_VERSION: "0.85.3"
+    scripts:
+      - name: Initialize Environment and Dependencies
+        script: |
+          pip install flet==$FLET_VERSION mysql-connector-python
+      - name: Execute Flet Native Android Build
+        script: |
+          flet build apk mobile_monitor.py
+    artifacts:
+      - build/apk/*.apk

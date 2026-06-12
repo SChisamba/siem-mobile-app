@@ -1,0 +1,4 @@
+app:
+  name: SIEM Mobile Gateway
+  package: com.security.siemgateway
+  version: 2.0.0
